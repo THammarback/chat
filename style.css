@@ -1,0 +1,75 @@
+@font-face {
+	font-family: 'cinzel';
+	src: url(https://fonts.gstatic.com/s/ebgaramond/v31/SlGUmQSNjdsmc35JDF1K5GR1SDk.woff2) format('woff2');
+}
+
+html, body{
+	margin:0;
+}
+
+body {
+	/* background-image: url('./dragon-chinese-fantasy-art-51-4k.jpg'); */
+	background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhdUgHNrTEWC6d-4vxbdRQ1zNZiHI47GBMdBr0CL9IsOlwuD94FFMYn-HBDi1mbwnp_wCnMtwRD35ht1MY5Nd2fVrjEwDTTU1ulJ8oQfOVL9lvGtbKX7OTALmCfWnVQwUpNRh_IoIS19uJV/w0/dragon-chinese-fantasy-art-51-4k.jpg');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 76.4vh;
+	min-height: 300px;
+}
+
+form {
+	width: 25vw;
+	min-width: 200px;
+	font-family: 'cinzel';
+	font-weight: bold;
+	border-radius: 5px;
+	padding: 10px 20px;
+	isolation: isolate;
+	box-shadow: inset 0px -150px 75px -150px rgba(100, 255, 255, 0.4),
+	 	 	 	inset 0px -300px 150px -150px rgba(255, 255, 255, 0.7),
+	 	 	 	0px 4px 2px rgba(0, 0, 0, 0.1)
+}
+
+form input{
+	font-family: 'cinzel';
+	font-weight: bold;
+	border: none;
+	background: rgba(0,0,0,0);
+	color: #000;
+	border-radius: 5px;
+	box-shadow: inset 0px -16px 16px -13px rgba(100, 255, 255, 0.4),
+	 	 	 	inset 0px -32px 16px -9px rgba(255, 255, 255, 0.7),
+	 	 	 	0px 4px 2px rgba(0, 0, 0, 0.1);
+	transition: box-shadow 0.1s ease-in-out;
+}
+form input[type="text"] {
+	font-size: 1.2em;
+	width:100%;
+	box-sizing: border-box;
+	padding: 7px 15px;
+	margin-bottom:10px;
+	border: none;
+}
+form input[type="text"]::placeholder{
+	font-family: 'cinzel';
+	font-weight: bold;
+	color:rgba(0,0,0,0.5);
+}
+
+form input[type="submit"] {
+	font-size: 1.3em;
+	padding: 7px 15px;
+	cursor: pointer;
+}
+
+form input:active, form input:focus, form input:hover{
+	outline: none;
+	box-shadow: inset 0px -32px 16px -13px rgba(100, 255, 255, 0.4),
+				inset 0px -64px 16px -9px rgba(255, 255, 255, 0.7),
+ 					  0px 4px 2px rgba(0, 0, 0, 0.1);
+}
+
