@@ -1,55 +1,25 @@
-const chatLog = document.getElementById("chat-log");
-const messageInput = document.getElementById("message-input");
-const sendButton = document.getElementById("send-button");
-const debugButton = document.getElementById("debug");
+const canvas = document.getElementsByTagName("canvas")[0]
+canvas.width = 720;
+canvas.height = 480;
+const ctx = canvas.getContext("2d");
+ctx.fillStyle = "#0f0"
+ctx.fillRect(0,0,720,480);
 
-if(username){
-	localStorage.setItem("username", username)
+function inventoryDragStart(e){
+    e.dataTransfer.setData("inventoryIndex", e.target.parentElement.dataset.index);
 }
-if(gameroom){
-	history.pushState({}, null, gameroom)
+function inventoryDrop(e){
+    e.target.appendChild(inventory.children[e.dataTransfer.getData("inventoryIndex")].children[0])
+}
+function inventoryDragOver(e){
+    e.preventDefault()
+}
+function canvasDrop(e){
+    const image = inventory.children[e.dataTransfer.getData("inventoryIndex")].children[0]
+    ctx.drawImage(image, e.clientX, e.clientY)
 }
 
-const ws = new WebSocket(`ws://localhost:8000/ws?username=${username}&gameroom=${gameroom}`);
-
-ws.onopen = () => {
-	chatLog.innerHTML += '<p style="color: green;">Connected to chat!</p>';
-};
-
-ws.onmessage = (event) => {
-	chatLog.innerHTML += `<p>${event.data}</p>`;
-	chatLog.scrollTop = chatLog.scrollHeight; // Scroll to bottom
-};
-
-ws.onclose = (e) => {
-	if (e.code >= 4000) {
-		console.error(e.code, e.reason);
-	}
-	chatLog.innerHTML += '<p style="color: red;">Disconnected from chat.</p>';
-};
-
-ws.onerror = (error) => {
-	console.log(error);
-	location.href = `/error?msg=${encodeURI("Socket error - see console")}`;
-};
-
-sendButton.addEventListener("click", () => {
-	const message = messageInput.value;
-	if (message.trim() !== "" && ws && ws.readyState === WebSocket.OPEN) {
-		ws.send(message);
-		chatLog.innerHTML += `<p>You: ${message}</p>`; // Display own message immediately
-		chatLog.scrollTop = chatLog.scrollHeight;
-		messageInput.value = ""; // Clear input
-	}
-});
-
-messageInput.addEventListener("keypress", (event) => {
-	if (event.key === "Enter") {
-		sendButton.click();
-	}
-});
-
-debugButton.addEventListener("click", (e) => {
-	console.log(e);
-	ws.send("debug!");
-});
+window.inventoryDragStart = inventoryDragStart
+window.inventoryDrop = inventoryDrop
+window.inventoryDragOver = inventoryDragOver
+window.canvasDrop = canvasDrop

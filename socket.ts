@@ -1,6 +1,6 @@
 const rooms:Map<string, Map<string, WebSocket>> = new Map()
 
-export function check(roomname:string|undefined|null, username:string|undefined|null, create:boolean):[false, string] | [true]{
+export function check(username:string|undefined|null, roomname:string|undefined|null, create:boolean):[false, string] | [true]{
     if(!roomname || !username){
         return [false, `No room or username!`]
     }
